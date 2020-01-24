@@ -12,6 +12,8 @@ Reference link:
   https://github.com/jetsonhacks/buildLibrealsense2Xavier
   
   https://github.com/IntelRealSense/librealsense
+  
+  https://github.com/Tengyun-Mo/buildLibrealsense2TX2
 
 May 2019
 
@@ -27,9 +29,18 @@ On the stock Jetson TX2 install, there is no zImage in the boot directory.So we 
 
 NOTE:Make sure where the Image file on TX2 turely is,and cover to it by Image file under image directory.Remember backup the Image file on TX2 before you cover to it.
 
-$ sudo cp ./image/Image /boot
+$ sudo cp ./image/Image-dev /boot
+
+$ sudo cp ./extlinux.conf /boot/extlinux/
+
 
 Then,reboot your device.
+
+Install All dependencies for Jetson SDK components and librealsense2
+
+$ ./installLibrealsenseDependencies.sh
+
+Reboot the computer and then install all Jetson SKD components, includng CUDA, AI, Conputer Vision and Multimedia
 
 You may remove all the kernel source using the provided convenience script 'removeAllKernelSources.sh'.
 
@@ -41,13 +52,6 @@ $ ./installLibrealsense.sh
 
 This will build the librealsense libraries and examples. The examples will be placed in /usr/local/bin.
 
-Application Patching
-
-Currently there are issues with the realsense-viewer application. The first issue is that sometimes when using large frame sizes, incomplete frames are received. This is a library wide issue, not strictly limited to the realsense-viewer app. The second issue is that one of the processes tends to block in the realsense-viewer app. There are two work around patches provided here. The patches may be applied with:
-
-$ ./patchApplication.sh
-
-Note that you will need to recompile the library and application for these to take effect.
 
 Release Notes:
 
